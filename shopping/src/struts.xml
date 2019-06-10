@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package extends="struts-default" namespace="/" name="default">		
+		
+		<!-- Direct to product display -->
+		<action name="product" class="com.action.productAction" method="find">
+			<result name="success">productPage.jsp</result>
+		</action>
+		
+		<!-- New product item -->
+<!-- 	<action name="new" class="com.action.productAction" method="add">
+			<result name="success">success.jsp</result>
+		</action>
+	-->	
+	
+		<!-- Direct to cart display -->
+		<action name="cart" class="com.action.cartAction">
+			<result name="success">cart.jsp</result>
+			<result name="clearCart">cart.jsp</result>
+		</action>
+		<!-- Clear all item in cart -->
+		<action name="clear" class="com.action.cartAction" method="clearCart">
+			<result name="clearCart">cart.jsp</result>
+		</action>
+		<!-- Remove single item from cart -->
+		<action name="remove" class="com.action.cartAction" method="removeCart">
+			<result name="remove">cart.jsp</result>
+		</action>
+		
+		<!-- Check member and cart null or not -->
+		<action name="checkout" class="com.action.orderAction" method="checkout">
+			<result name="success">checkout.jsp</result>
+			<result name="nullMember">memberPage.jsp</result>
+			<result name="error">cart.jsp</result>
+		</action>
+		
+		<!-- New order in database -->
+		<action name="order" class="com.action.orderAction" method="order">
+			<result name="success">confirmation.jsp</result>
+			<result name="error">cart.jsp</result>
+		</action>
+		
+		<!-- Member sign in -->
+		<action name="login" class="com.action.memberAction" method="login">
+			<result name="success">index.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="register" class="com.action.memberAction" method="register">
+			<result name="success">index.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="exist">error.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>
